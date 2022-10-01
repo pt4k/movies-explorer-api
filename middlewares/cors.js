@@ -5,7 +5,7 @@ const options = {
     'https://movies.pishchenko.nomoredomains.icu',
     'http://api.movies.pishchenko.nomoredomains.icu',
     'https://api.movies.pishchenko.nomoredomains.icu',
-    'localhost:3010',
+    'localhost:3005',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,

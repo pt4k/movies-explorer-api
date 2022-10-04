@@ -18,10 +18,7 @@ const createUser = (req, res, next) => {
       name: req.body.name,
     }))
     .then((user) => {
-      res.send({
-        name: user.name,
-        email: user.email,
-      });
+      res.send({ user });
     })
     .catch((err) => {
       if (err.code === 11000) {

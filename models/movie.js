@@ -29,7 +29,7 @@ const movieSchema = new mongoose.Schema({
   },
   trailerLink: {
     type: String,
-    // required: true,
+    required: true,
     validate: [validator.isURL, 'Ссылка введена некорректно'],
   },
   thumbnail: {
@@ -42,7 +42,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   movieId: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   nameRU: {

@@ -20,7 +20,7 @@
 
 ---
 
-## Адресс домена
+## Адрес домена
 
 'http://api.movies.pishchenko.nomoredomains.icu',
 'https://api.movies.pishchenko.nomoredomains.icu'

@@ -18,6 +18,7 @@ const createMovie = (req, res, next) => {
 };
 
 const getMovies = (req, res, next) => {
+  console.log();
   Movie.find()
     .then((movie) => {
       res.send({ data: movie });

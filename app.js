@@ -20,6 +20,8 @@ const {
   DB_NAME = 'moviesdb',
 } = process.env;
 
+console.log();
+
 mongoose.connect(`mongodb://${MONGO_ADDR}:${MONGO_PORT}/${DB_NAME}`);
 
 app.use('*', cors(options));

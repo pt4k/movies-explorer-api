@@ -18,11 +18,14 @@ const createMovie = (req, res, next) => {
 };
 
 const getMovies = (req, res, next) => {
-  Movie.find({})
-    .then((movies) => {
-      res.send(movies);
+  Movie.find()
+    .then((movie) => {
+      res.send({ data: movie });
     })
-    .catch(next);
+    .catch((err) => {
+      console.log(err);
+      next(err);
+    });
 };
 
 const deleteMovie = (req, res, next) => {

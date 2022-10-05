@@ -12,9 +12,15 @@ const { limiter } = require('./utils/rateLimiter');
 const app = express();
 app.use(helmet());
 
-const { PORT = 3005 } = process.env;
+const {
+  PORT = 3005,
+  NODE_ENV = 'develop',
+  MONGO_ADDR = 'localhost',
+  MONGO_PORT = '27017',
+  DB_NAME = 'moviesdb',
+} = process.env;
 
-mongoose.connect('mongodb://localhost:27017/moviesdb');
+mongoose.connect(`mongodb://${MONGO_ADDR}:${MONGO_PORT}/${DB_NAME}`);
 
 app.use('*', cors(options));
 

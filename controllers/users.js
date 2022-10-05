@@ -20,6 +20,9 @@ const createUser = (req, res, next) => {
     .then((user) => {
       res.send({ user });
     })
+    .then(() => {
+      res.send(console.log('Пользователь создан'));
+    })
     .catch((err) => {
       if (err.code === 11000) {
         next(new ConflictError('Такой пользователь уже существует'));

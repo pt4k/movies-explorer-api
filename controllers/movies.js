@@ -18,15 +18,16 @@ const createMovie = (req, res, next) => {
 };
 
 const getMovies = (req, res, next) => {
-  console.log();
-  Movie.find()
+  const userId = req.user._id;
+
+  Movie.find({ owner: userId })
+    .orFail(() => {
+      throw new NotFoundError('Сохраненных фильмов не найдено.');
+    })
     .then((movie) => {
       res.send({ data: movie });
     })
-    .catch((err) => {
-      console.log(err);
-      next(err);
-    });
+    .catch(next);
 };
 
 const deleteMovie = (req, res, next) => {

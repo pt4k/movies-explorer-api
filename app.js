@@ -14,6 +14,7 @@ app.use(helmet());
 
 const {
   PORT = 3005,
+  // eslint-disable-next-line no-unused-vars
   NODE_ENV = 'develop',
   MONGO_ADDR = 'localhost',
   MONGO_PORT = '27017',

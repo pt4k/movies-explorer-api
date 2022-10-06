@@ -8,22 +8,12 @@ const routes = require('./routes');
 const err = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { limiter } = require('./utils/rateLimiter');
+const { PORT, mongoServer } = require('./utils/mongoConfig');
 
 const app = express();
 app.use(helmet());
 
-const {
-  PORT = 3005,
-  // eslint-disable-next-line no-unused-vars
-  NODE_ENV = 'develop',
-  MONGO_ADDR = 'localhost',
-  MONGO_PORT = '27017',
-  DB_NAME = 'moviesdb',
-} = process.env;
-
-console.log();
-
-mongoose.connect(`mongodb://${MONGO_ADDR}:${MONGO_PORT}/${DB_NAME}`);
+mongoose.connect(mongoServer);
 
 app.use('*', cors(options));
 

@@ -17,3 +17,10 @@
 
 `npm run start` — запускает сервер   
 `npm run dev` — запускает сервер с hot-reload
+
+---
+
+## Адрес домена
+
+'http://api.movies.pishchenko.nomoredomains.icu',
+'https://api.movies.pishchenko.nomoredomains.icu'

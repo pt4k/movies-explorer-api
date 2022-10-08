@@ -7,8 +7,8 @@ const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/NotFoundError');
 const { login, createUser } = require('../controllers/users');
 
-router.post('/signin', validateUserBody, login);
 router.post('/signup', validateAuthentication, createUser);
+router.post('/signin', validateUserBody, login);
 
 router.use(auth);
 

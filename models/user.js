@@ -21,6 +21,12 @@ const userSchema = new mongoose.Schema({
     maxlength: 30,
     default: 'user default',
   },
+  movie: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'movies',
+    },
+  ],
 });
 
 userSchema.statics.findUserByCredentials = function (email, password, next) {

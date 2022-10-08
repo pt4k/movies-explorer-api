@@ -11,7 +11,6 @@ const NotFoundError = require('../errors/NotFoundError');
 const SALT_ROUNDS = 10;
 
 const createUser = (req, res, next) => {
-  console.log();
   bcrypt.hash(req.body.password, SALT_ROUNDS)
     .then((hash) => User.create({
       email: req.body.email,
@@ -19,13 +18,13 @@ const createUser = (req, res, next) => {
       name: req.body.name,
     }))
     .then((user) => {
-      const token = jwt.sign({ _id: user.id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
-
       res.send({
         name: user.name,
         email: user.email,
-        token,
       });
+    })
+    .then(() => {
+      res.send(console.log('Пользователь создан'));
     })
     .catch((err) => {
       if (err.code === 11000) {
@@ -80,6 +79,8 @@ const patchUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidError('Переданы некорректные данные при обновлении профиля.'));
+      } else if (err.code === 11000) {
+        next(new ConflictError('Такой email уже существует'));
       } else {
         next(err);
       }

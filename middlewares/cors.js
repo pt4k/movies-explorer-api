@@ -33,7 +33,7 @@ module.exports = (req, res, next) => {
   }
 
   // проверяем, что источник запроса есть среди разрешённых
-  if (allowedCors.includes(origin)) {
+  if (options.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
   // устанавливаем заголовок, который разрешает браузеру запросы из любого источника

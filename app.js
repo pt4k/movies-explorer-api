@@ -3,7 +3,7 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { options } = require('./middlewares/cors');
+// const { options } = require('./middlewares/cors');
 const routes = require('./routes');
 const err = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -15,7 +15,25 @@ app.use(helmet());
 
 mongoose.connect(mongoServer);
 
-app.use('*', cors(options));
+const options = {
+  origin: [
+    'http://movies.pishchenko.nomoredomains.icu',
+    'https://movies.pishchenko.nomoredomains.icu',
+    'http://api.movies.pishchenko.nomoredomains.icu',
+    'https://api.movies.pishchenko.nomoredomains.icu',
+    'http://localhost:3005',
+    'https://localhost:3005',
+    'http://localhost:3000',
+    'https://localhost:3000',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'authorization'],
+  credentials: true,
+};
+
+app.use(cors());
 
 app.use(express.json());
 
